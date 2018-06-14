@@ -27,7 +27,7 @@
   var wins = 0;
   var losses = 0;
   var remainingGuess = 9;
-  //I can't find a way to populate this array with the guesses so far.  It only show s the current letter
+  //TO DO>>>>>>I can't find a way to populate this array with the guesses so far.  It only shows the current letter pressed
   var userGuess = [];
   
   //FUNCTIONS
@@ -43,10 +43,12 @@
 
     // This array holds the valid inputs 
     var validInputs = ["a", "b", "c","d", "e", "f","g", "h", "i","j", "k", "l","m", "n", "o","p", "q", "r","s", "t", "u","v", "w", "x","y", "z"];
-    
+  
+  //LOGIC
+
     /* I originally had this as an "if/else if" condition, but it didn't reset the variable values.
     It kept going into negatives.  I randomly tried using only "ifs" after remebering that "ifs" 
-    can exist independently*/
+    can exist independently and it worked*/
     if (userGuess === computerGuess) {
           wins++;
        }
@@ -58,7 +60,8 @@
           losses ++;
 				  userGuess = [];
          }
-      
+
+    //Variable to hold HTML modeled after RPS solution  
     var html =
         "<h1>The Psychic Game</h1>"+
         "<p>Guess what letter I'm thinking of...</p>"+
