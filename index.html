@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Psychic Game</title>
+</head>
+<body>
+    <div id="game">
+
+        <h1>The Psychic Game</h1>
+        <p>Guess what letter I'm thinking of...</p>
+        <p id ="wins">Wins:</p>
+        <p id ="losses">Losses:</p>
+        <p id ="guessesLeft">Guesses left:</p>
+        <p id = "guessSoFar">Your guesses so far:</p>
+
+    </div>
+</body>
+
+<script type = "text/javascript">
+  //VARIABLES
+  
+  //Array of letters computer will select from
+  var computerChoices = ["a", "b", "c","d", "e", "f","g", "h", "i","j", "k", "l","m", "n", "o","p", "q", "r","s", "t", "u","v", "w", "x","y", "z"];
+  
+  //variables for wins, losses, guesses left, and guesses so far
+  var wins = 0;
+  var losses = 0;
+  var remainingGuess = 9;
+  //I can't find a way to populate this array with the guesses so far.  It only show s the current letter
+  var userGuess = [];
+  
+  //FUNCTIONS
+
+  //This function is run whenever a key is pressed.
+  document.onkeypress = function(event) {
+    
+    //Determines which key is pressed.
+    var userGuess = event.key;
+    
+    // Randomly chooses a choice from the options array. This is the Computer's guess.
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+    // This array holds the valid inputs 
+    var validInputs = ["a", "b", "c","d", "e", "f","g", "h", "i","j", "k", "l","m", "n", "o","p", "q", "r","s", "t", "u","v", "w", "x","y", "z"];
+    
+    /* I originally had this as an "if/else if" condition, but it didn't reset the variable values.
+    It kept going into negatives.  I randomly tried using only "ifs" after remebering that "ifs" 
+    can exist independently*/
+    if (userGuess === computerGuess) {
+          wins++;
+       }
+    if (userGuess !== computerGuess) {
+          remainingGuess--;
+       }
+    if (remainingGuess === 0) {
+          remainingGuess = 9;
+          losses ++;
+				  userGuess = [];
+         }
+      
+    var html =
+        "<h1>The Psychic Game</h1>"+
+        "<p>Guess what letter I'm thinking of...</p>"+
+        "<p>wins: " + wins + "</p>" +
+        "<p>losses: " + losses + "</p>" +
+        "<p>Guesses left: " + remainingGuess + "</p>"+
+        "<p>Your guesses so far: " + userGuess + "</p>";
+
+			document.querySelector("#game").innerHTML = html;
+
+      }
+  
+      
+</script>
